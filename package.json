@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fwg/s-expression.git"
+    "url": "https://github.com/@lilusoft/s-expression.git"
   },
   "author": {
     "name": "Friedemann Altrock",
