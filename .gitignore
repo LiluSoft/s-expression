@@ -1,4 +1,5 @@
 /node_modules
 /dist
 /docs/html
-s-expression-3.0.3.tgz
+s-expression-*
+lilusoft-s-expression-*

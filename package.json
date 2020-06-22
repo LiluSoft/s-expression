@@ -13,7 +13,8 @@
     "precommit": "npm run build:clean && npm run lint && npm run dryrun && npm run test && npm run build",
     "doc": "npm run doc:clean && typedoc --theme default --tsconfig tsconfig.json --plugin none",
     "doc:clean": "rimraf ./docs/html",
-    "doc:markdown": "npm run doc:clean && typedoc --tsconfig tsconfig.json --plugin typedoc-plugin-markdown --theme markdown && concat-md --toc --decrease-title-levels --dir-name-as-title ./docs/html > ./docs/html/single-page.md"
+    "doc:markdown": "npm run doc:clean && typedoc --tsconfig tsconfig.json --plugin typedoc-plugin-markdown --theme markdown && concat-md --toc --decrease-title-levels --dir-name-as-title ./docs/html > ./docs/html/single-page.md",
+    "publish-now": "npm publish --access public"
   },
   "repository": {
     "type": "git",
