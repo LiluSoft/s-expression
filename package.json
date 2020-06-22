@@ -1,6 +1,6 @@
 {
   "name": "@lilusoft/s-expression",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "s-expression parser with (un|quasi|)quoting support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "lint": "tslint --project .",
     "dryrun": "tsc -noEmit",
     "build": "tsc",
-    "build:clean":"rimraf ./dist",
+    "build:clean": "rimraf ./dist",
     "precommit": "npm run build:clean && npm run lint && npm run dryrun && npm run test && npm run build",
     "doc": "npm run doc:clean && typedoc --theme default --tsconfig tsconfig.json --plugin none",
     "doc:clean": "rimraf ./docs/html",
@@ -39,9 +39,7 @@
     }
   ],
   "license": "MIT",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "concat-md": "^0.3.5",
     "@types/chai": "^4.2.11",
