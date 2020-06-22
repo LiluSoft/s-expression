@@ -27,5 +27,17 @@
     "exclude": [
         "node_modules",
         "dist"
-    ]
+    ],
+    "typedocOptions": {
+        "mode": "modules",
+        "out": "docs/html",
+        "excludePrivate": true,
+        "excludeNotExported": true,
+        "externalPattern": "**/node_modules",
+        "toc": [
+            "s-expression"
+        ],
+        "theme":"docs/theme"
+    }
+   
 }

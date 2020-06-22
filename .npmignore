@@ -1,0 +1,7 @@
+.vscode
+docs
+src
+test
+tsconfig.json
+tslint.json
+s-expression-*

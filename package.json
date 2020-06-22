@@ -9,8 +9,10 @@
     "lint": "tslint --project .",
     "dryrun": "tsc -noEmit",
     "build": "tsc",
-    "prepublish": "npm run lint && npm run dryrun && npm run test",
-    "install" : "npm run build"
+    "precommit": "npm run lint && npm run dryrun && npm run test && npm run build",
+    "doc": "npm run doc:clean && typedoc --theme default --tsconfig tsconfig.json --plugin none",
+    "doc:clean": "rimraf ./docs/html",
+    "doc:markdown": "npm run doc:clean && typedoc --tsconfig tsconfig.json --plugin typedoc-plugin-markdown --theme markdown && concat-md --toc --decrease-title-levels --dir-name-as-title ./docs/html > ./docs/html/single-page.md"
   },
   "repository": {
     "type": "git",
@@ -30,22 +32,27 @@
       "email": "an@cyan.io"
     },
     {
-      "name":"Dror Gluska",
-      "email":"drorgl@gmail.com"
+      "name": "Dror Gluska",
+      "email": "drorgl@gmail.com"
     }
   ],
   "license": "MIT",
   "dependencies": {
-   
+    
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.0.2",
+    "concat-md": "^0.3.5",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.13",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "mocha": "^8.0.1",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.5",
+    "typedoc": "^0.17.7",
+    "typedoc-plugin-external-module-name": "^4.0.3",
+    "typedoc-plugin-markdown": "^2.3.1",
+    "rimraf": "^3.0.2"
   }
 }

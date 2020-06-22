@@ -10,8 +10,14 @@ const QUOTES_MAP: { [key: string]: string; } = {
 	",": "unquote"
 };
 
+/**
+ * S-Expression Parser
+ */
 export default class SParser {
-
+	/**
+	 * Recursively parses s-expressions into arrays
+	 * @param stream s-expression string
+	 */
 	public static parse(stream: string) {
 		const parser = new SParser(stream);
 		const expression = parser.expr();
@@ -23,21 +29,46 @@ export default class SParser {
 
 		return expression;
 	}
+	/**
+	 * Current Line
+	 */
 	private _line: number;
+
+	/**
+	 * Current Column
+	 */
 	private _col: number;
+
+	/**
+	 * Current Position
+	 */
 	private _pos: number;
+
+	/**
+	 * String to parse
+	 */
 	private _stream: string;
 
+	/**
+	 * Instantiates a new SParser
+	 * @param stream s-expression string
+	 */
 	constructor(stream: string) {
 		this._line = this._col = this._pos = 0;
 		this._stream = stream;
 	}
 
+	/**
+	 * Returns the next character
+	 */
 	public peek(): string {
 		if (this._stream.length === this._pos) { return null; }
 		return this._stream[this._pos];
 	}
 
+	/**
+	 * Returns the next character and advances the counter, if a new line is detected, return it as well
+	 */
 	public consume(): string {
 		if (this._stream.length === this._pos) { return null; }
 
@@ -61,6 +92,10 @@ export default class SParser {
 		return c;
 	}
 
+	/**
+	 * Parse the string until a regex is encountered and return the parsed substring
+	 * @param regex matcher look for
+	 */
 	public until(regex: RegExp): string {
 		let s = "";
 
@@ -71,6 +106,9 @@ export default class SParser {
 		return s;
 	}
 
+	/**
+	 * parse until string section ends and return the string
+	 */
 	public string(): string {
 		// consume "
 		this.consume();
@@ -122,6 +160,9 @@ export default class SParser {
 		return str;
 	}
 
+	/**
+	 * Returns the next atom
+	 */
 	public atom(): string {
 		if (this.peek() === '"') {
 			return this.string();
@@ -145,7 +186,10 @@ export default class SParser {
 		return atom;
 	}
 
-	public quoted(): Array<string | string[]> {
+	/**
+	 * Returns the next quoted
+	 */
+	public quoted(): (string | string[])[] {
 		let q = this.consume();
 		let quote = QUOTES_MAP[q];
 
@@ -167,6 +211,9 @@ export default class SParser {
 		return [quote, quotedExpr];
 	}
 
+	/**
+	 * returns the next expression
+	 */
 	public expr(): string[] | string {
 		// ignore whitespace
 		this.until(NOT_WHITESPACE_OR_END);
@@ -183,6 +230,9 @@ export default class SParser {
 		return expr as string[];
 	}
 
+	/**
+	 * returns the next list
+	 */
 	public list() {
 		if (this.peek() !== "(") {
 			throw new SyntaxError(`Syntax Error: Expected ( - saw ${this.peek()} instead.`, this._line + 1, this._col + 1);
