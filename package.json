@@ -1,5 +1,5 @@
 {
-  "name": "s-expression",
+  "name": "@lilusoft/s-expression",
   "version": "3.0.3",
   "description": "s-expression parser with (un|quasi|)quoting support",
   "main": "dist/index.js",
@@ -9,7 +9,8 @@
     "lint": "tslint --project .",
     "dryrun": "tsc -noEmit",
     "build": "tsc",
-    "precommit": "npm run lint && npm run dryrun && npm run test && npm run build",
+    "build:clean":"rimraf ./dist",
+    "precommit": "npm run build:clean && npm run lint && npm run dryrun && npm run test && npm run build",
     "doc": "npm run doc:clean && typedoc --theme default --tsconfig tsconfig.json --plugin none",
     "doc:clean": "rimraf ./docs/html",
     "doc:markdown": "npm run doc:clean && typedoc --tsconfig tsconfig.json --plugin typedoc-plugin-markdown --theme markdown && concat-md --toc --decrease-title-levels --dir-name-as-title ./docs/html > ./docs/html/single-page.md"
